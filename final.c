@@ -51,7 +51,7 @@ int pessoa_id_automatico();
 int videogame_busca_por_referencia(int id);
 int jogo_busca_por_referencia(int id);
 int pessoa_busca_por_referencia(int id);
-int venda_busca_por_referencia(int id);
+int venda_busca_por_referencia(int id_pessoa);
 
 int main() {
 
@@ -225,18 +225,18 @@ int main() {
                     break;
 
                     case 7:
-                        printf("\nInforme o id do vídeogame: ");
+                        printf("\nInforme o id da pessoa: ");
                         scanf("%d", &busca_id);
-                        retorno = videogame_busca_por_referencia(busca_id);
+                        retorno = pessoa_busca_por_referencia(busca_id);
                         if(retorno == 1) {
                             printf("\nNão há registro referente a esse ID!");
                         }
                     break;
 
                     case 8:
-                        printf("\nInforme o id do vídeogame: ");
+                        printf("\nInforme o id do cliente: ");
                         scanf("%d", &busca_id);
-                        retorno = videogame_busca_por_referencia(busca_id);
+                        retorno = venda_busca_por_referencia(busca_id);
                         if(retorno == 1) {
                             printf("\nNão há registro referente a esse ID!");
                         }
@@ -312,7 +312,30 @@ int listar_videogame() {
     fclose(f);
     return 0;
 }
-int listar_jogo() {
+int listar_jogo() { // OK
+    struct jogo j;
+    struct videogame v;
+    FILE *fv = fopen("arquivos/videogame.bin", "rb");
+    FILE *f = fopen("arquivos/jogo.bin", "rb");
+    if(f == NULL) {
+        return 1;
+    }
+
+    while(fread(&j, sizeof(struct jogo), 1, f)) {
+        fread(&v, sizeof(struct videogame), 1, fv);
+        if(j.videogame_id == v.id) {
+            printf("\nID: %d\nNome: %sVideogame: %s", j.id, j.nome, v.nome);
+        } else {
+            printf("\nID: %d\nNome: %sID Videogame: %d\n", j.id, j.nome, j.videogame_id);
+        }
+    }
+
+    fclose(f);
+    return 0;
+}
+
+/*
+int listar_jogo() { // original
     struct jogo j;
     FILE *f = fopen("arquivos/jogo.bin", "rb");
     if(f == NULL) {
@@ -326,6 +349,8 @@ int listar_jogo() {
     fclose(f);
     return 0;
 }
+*/
+
 int listar_pessoa() {
     struct pessoa p;
     FILE *f = fopen("arquivos/pessoa.bin", "rb");
@@ -422,14 +447,14 @@ int jogo_busca_por_referencia(int id) {
     fclose(f);
     return x;
 }
-/*
+
 int pessoa_busca_por_referencia(int id) {
     struct pessoa p;
     FILE *f = fopen("arquivos/pessoa.bin", "rb");
     int x=1;
     while(fread(&p, sizeof(struct pessoa), 1, f)) {
         if(p.id == id) {
-            printf("\nID: %d\nNome: %sMarca: %s\n", p.id, p.nome, p.marca);
+            printf("\nID: %d\nNome: %sSobrenome: %sCPF: %sMês de nascimento: %d\nAno de nascimento: %d\nSexo: %d\n", p.id, p.p_nome, p.u_nome, p.cpf, p.mes_nasc, p.ano_nasc, p.sexo);
             x=0;
         }
     }
@@ -437,17 +462,17 @@ int pessoa_busca_por_referencia(int id) {
     fclose(f);
     return x;
 }
-int venda_busca_por_referencia(int id) {
+int venda_busca_por_referencia(int id_pessoa) {
     struct venda v;
     FILE *f = fopen("arquivos/venda.bin", "rb");
     int x=1;
-    while(fread(&v, sizeof(struct v), 1, f)) {
-        if(v.id == id) {
-            printf("\nID: %d\nNome: %sMarca: %s\n", v.id, v.nome, v.marca);
+    while(fread(&v, sizeof(struct venda), 1, f)) {
+        if(v.pessoa_id == id_pessoa) {
+            printf("\nID Cliente: %d\nID Jogo: %d\nData da venda: %s", v.pessoa_id, v.jogo_id, v.data);
             x=0;
         }
     }
 
     fclose(f);
     return x;
-}*/
+}
