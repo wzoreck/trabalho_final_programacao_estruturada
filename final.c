@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Estruturas
+// ESTRUTURAS
 struct videogame {
     int id;
     char nome[50];
@@ -29,7 +29,7 @@ struct venda {
     char data[12];
 };
 
-// Funções
+// FUNÇÕES
 int cadastrar_videogame(struct videogame v);
 int cadastrar_jogo(struct jogo j);
 int cadastrar_pessoa(struct pessoa p);
@@ -99,7 +99,7 @@ int main() {
                         fgets(videogame.marca, 50, stdin);
                         retorno = cadastrar_videogame(videogame);
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo");
+                            printf("\nFalha ao abrir o arquivo");
                         }
                     break;
 
@@ -138,7 +138,7 @@ int main() {
                         scanf("%d", &pessoa.sexo);
                         retorno = cadastrar_pessoa(pessoa);
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo");
+                            printf("\nFalha ao abrir o arquivo");
                         }
                     break;
 
@@ -147,12 +147,12 @@ int main() {
                         scanf("%d", &venda.pessoa_id);
                         printf("Informe o id do jogo: ");
                         scanf("%d", &venda.jogo_id);
-                        printf("Informe a data (AAAA/MM/DD):");
+                        printf("Informe a data (AAAA/MM/DD): ");
                         setbuf(stdin, NULL); // Para resolver problemas com o buffer
                         fgets(venda.data, 12, stdin);
                         retorno = cadastrar_venda(venda);
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo");
+                            printf("\nFalha ao abrir o arquivo");
                         } else if(retorno == 2) {
                             printf("\nNão há cadastro referente a um ID informado!");
                         }
@@ -178,9 +178,9 @@ int main() {
                     case 1: // CONSULTAR VIDEOGAMES
                         retorno = listar_videogame();
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo!");
+                            printf("\nFalha ao abrir o arquivo!");
                         } else if(retorno == 2) {
-                            printf("Não há registros ainda!"); // ADICIONAR ESTA FUNCIONALIDADE NOS RESTANTES
+                            printf("\nNão há registros ainda!"); // ADICIONAR ESTA FUNCIONALIDADE NOS RESTANTES
                         }
                     break;
 
@@ -188,9 +188,9 @@ int main() {
                     case 2: // CONSULTAR JOGOS
                         retorno = listar_jogo();
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo!");
+                            printf("\nFalha ao abrir o arquivo!");
                         } else if(retorno == 2) {
-                            printf("Não há registros ainda!");
+                            printf("\nNão há registros ainda!");
                         }
                     break;
 
@@ -206,13 +206,13 @@ int main() {
                     case 4: // CONSULTAR VENDAS
                         retorno = listar_venda();
                         if(retorno == 1) {
-                            printf("Falha ao abrir o arquivo!");
+                            printf("\nFalha ao abrir o arquivo!");
                         } else if(retorno == 2) {
-                            printf("Não há registros ainda!");
+                            printf("\nNão há registros ainda!");
                         }
                     break;
 
-                    case 5:
+                    case 5: // CONSULTAR VIDEOGAME POR ID
                         printf("\nInforme o id do vídeogame: ");
                         scanf("%d", &busca_id);
                         retorno = videogame_busca_por_referencia(busca_id, 1);
@@ -221,7 +221,7 @@ int main() {
                         }
                     break;
 
-                    case 6:
+                    case 6: // CONSULTAR JOGO POR ID
                         printf("\nInforme o id do jogo: ");
                         scanf("%d", &busca_id);
                         retorno = jogo_busca_por_referencia(busca_id, 1);
@@ -230,7 +230,7 @@ int main() {
                         }
                     break;
 
-                    case 7:
+                    case 7: // CONSULTAR PESSOA POR ID
                         printf("\nInforme o id da pessoa: ");
                         scanf("%d", &busca_id);
                         retorno = pessoa_busca_por_referencia(busca_id, 1);
@@ -239,7 +239,7 @@ int main() {
                         }
                     break;
 
-                    case 8:
+                    case 8: // lISTAR COMPRAS FEITAS POR CADA CLIENTE - CONSULTA VENDA POR ID
                         printf("\nInforme o id do cliente: ");
                         scanf("%d", &busca_id);
                         retorno = venda_busca_por_referencia(busca_id);
@@ -261,7 +261,7 @@ int main() {
                 printf("\n\nInforme sua escolha: ");
                 scanf("%d", &escolha2);
                 switch (escolha2) {
-                    case 1:
+                    case 1: // ALTERAR REGISTRO DE UM VIDEOGAME
                         printf("\nInforme o ID do videogame que deseja alterar: ");
                         scanf("%d", &videogame.id);
                         printf("Informe o novo nome do videogame: ");
@@ -276,7 +276,7 @@ int main() {
                         }
                     break;
 
-                    case 2:
+                    case 2: // ALTERAR REGISTRO DE UM JOGO
                         printf("\nInforme o ID do jogo que deseja alterar: ");
                         scanf("%d", &jogo.id);
                         printf("Informe o novo nome do jogo: ");
@@ -290,7 +290,7 @@ int main() {
                         }
                     break;
 
-                    case 3:
+                    case 3: // ALTERAR REGISTRO DE UM CLIENTE
                         printf("\nInforme o ID do cliente que deseja alterar: ");
                         scanf("%d", &pessoa.id);
                         printf("Informe o primeiro nome do cliente: ");
@@ -314,12 +314,12 @@ int main() {
                         }
                     break;
 
-                    case 4:
+                    case 4: // ALTERAR REGISTRO DE UMA VENDA
                         printf("\nInforme o id da pessoa: ");
                         scanf("%d", &venda.pessoa_id);
                         printf("Informe o id do jogo: ");
                         scanf("%d", &venda.jogo_id);
-                        printf("Informe a data (AAAA/MM/DD):");
+                        printf("Informe a data (AAAA/MM/DD): ");
                         setbuf(stdin, NULL);
                         fgets(venda.data, 12, stdin);
 
@@ -328,7 +328,7 @@ int main() {
                         scanf("%d", &venda2.pessoa_id);
                         printf("Informe o id do jogo: ");
                         scanf("%d", &venda2.jogo_id);
-                        printf("Informe a data (AAAA/MM/DD):");
+                        printf("Informe a data (AAAA/MM/DD): ");
                         setbuf(stdin, NULL);
                         fgets(venda2.data, 12, stdin);
                         retorno = alterar_venda(venda, venda2);
@@ -595,7 +595,7 @@ int venda_busca_por_referencia(int id_pessoa) { // OK
     return x;
 }
 
-// FUNÇÕES ATUALIZAR REGISTRO
+// FUNÇÕES PARA ATUALIZAR REGISTRO
 int alterar_videogame(struct videogame v) { // OK
     struct videogame v2;
     FILE *f = fopen("arquivos/videogame.bin", "r+b");
