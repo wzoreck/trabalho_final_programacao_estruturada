@@ -29,6 +29,7 @@ Abaixo utilizamos o diagrama do modelo relacional de banco de dados para poder r
 
 
 
+
 ## Funções utilizadas para manipulação de arquivos
 
 Os dados informados na função ```main()``` do programa, são salvos em variáveis de tipo heterogênea, ou seja variáveis **struct** do tipo videogame, jogo, pessoa ou venda, através de chamadas de função os dados podem ser salvos, listados, consultados ou alterados. Cada variável de tipo heterogênea armazena seus devidos atributos.
