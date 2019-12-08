@@ -1,3 +1,11 @@
+/*
+    TRABALHO FINAL DE PES
+
+    Alunos: Adam Slabadack, Daniel Wzoreck
+
+    Repositório com a documentação detalhada: https://github.com/wzoreck/trabalho_final_programacao_estruturada
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
